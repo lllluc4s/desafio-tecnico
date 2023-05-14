@@ -19,10 +19,10 @@
     <h2>Busque os 5 repositórios mais estrelados de um usuário do GitHub.</h2>
     <form method="GET" action="{{ route('search') }}">
         @csrf
-        <label for="username">Nome de usuário GitHub:</label>
+        <label for="username">Nome de usuário do GitHub:</label>
         <input type="text" name="username" id="username">
         <br>
-        <input type="submit" value="Search">
+        <input type="submit" value="Buscar">
         @if($errors->any())
             <div class="error">
                 @foreach($errors->all() as $error)

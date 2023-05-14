@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Http;
 
 class SearchController extends Controller
@@ -10,7 +11,7 @@ class SearchController extends Controller
     /**
      * Mostra a página de busca.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
@@ -20,12 +21,13 @@ class SearchController extends Controller
     /**
      * Busca os repositórios do usuário.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function search(Request $request)
     {
+        // Valida o campo username como obrigatório e string
         $request->validate([
             'username' => [
                 'required',
@@ -33,24 +35,23 @@ class SearchController extends Controller
             ],
         ], $this->messages());
 
-        $client_id     = env('GITHUB_CLIENT_ID');
-        $client_secret = env('GITHUB_CLIENT_SECRET');
-        $username      = $request->input('username');
-
+        $username = $request->input('username');
         $response = Http::withHeaders([
             'User-Agent' => 'PHP',
         ])->get("https://api.github.com/users/{$username}/repos", [
-            'client_id'     => $client_id,
-            'client_secret' => $client_secret,
+            'client_id'     => env('GITHUB_CLIENT_ID'), // Pega o client_id da variável de ambiente
+            'client_secret' => env('GITHUB_CLIENT_SECRET'), // Pega o client_secret da variável de ambiente
             'sort'          => 'updated', // Ordena por atualização
-            'direction'     => 'desc',
+            'direction'     => 'desc', // Ordena em ordem decrescente
             'per_page'      => 100, // Faz a paginação por 100 que é o máximo permitido
         ]);
 
+        // Se a requisição não retornar 200, retorna para a página inicial com uma mensagem de erro
         if (200 !== $response->status()) {
             return redirect()->back()->withErrors(['Erro ao buscar os repositórios do usuário. Tente novamente mais tarde.']);
         }
 
+        // Pega os dados da resposta
         $data = $response->json();
 
         // Ordena por estrelas em ordem decrescente
@@ -61,6 +62,7 @@ class SearchController extends Controller
         // Pega apenas os 5 primeiros
         $data = array_slice($data, 0, 5);
 
+        // Retorna a view com os dados
         return view('results', compact('data'));
     }
 
@@ -69,10 +71,10 @@ class SearchController extends Controller
      *
      * @return array
      */
-    private function messages()
+    public function messages(): array
     {
         return [
-            'required' => 'Por favor, informe um nome de usuário.',
+            'username.required' => 'Por favor, informe um nome de usuário.',
         ];
     }
 }
