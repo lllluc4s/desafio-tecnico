@@ -24,7 +24,7 @@
                 <td>{{ $repo['name'] }}</td>
                 <td>{{ $repo['description'] }}</td>
                 <td>{{ number_format($repo['stargazers_count'], 0, ',', '.') }}</td>
-                <td><a href="{{ $repo['html_url'] }}" target="_blank">{{ $repo['html_url'] }}</a></td>
+                <td><a href="{{ $repo['html_url'] }}" target="_blank"><img src="images/link.png" alt="Ícone do link"></a></td>
             </tr>
             @endforeach
         </tbody>

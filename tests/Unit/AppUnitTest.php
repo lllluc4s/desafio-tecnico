@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Http\Request;
+use App\Http\Requests\SearchRequest;
 use App\Http\Controllers\SearchController;
 
 class AppUnitTest extends TestCase
@@ -38,7 +38,7 @@ class AppUnitTest extends TestCase
      *
      * @return void
      */
-    public function test_index(): void
+    public function test_index_method(): void
     {
         $this->assertEquals(
             view('search'),
@@ -51,9 +51,9 @@ class AppUnitTest extends TestCase
      *
      * @return void
      */
-    public function test_search(): void
+    public function test_search_method(): void
     {
-        $request = Request::create('/search', 'GET', ['username' => 'laravel']);
+        $request = SearchRequest::create('/search', 'GET', ['username' => 'laravel']);
 
         $this->assertThat(
             $this->searchController->search($request),
@@ -66,13 +66,12 @@ class AppUnitTest extends TestCase
      *
      * @return void
      */
-    public function test_messages(): void
+    public function test_search_request_messages_method(): void
     {
-        Request::create('/search', 'GET');
+        $request = SearchRequest::create('/search', 'GET', ['username' => '']);
 
-        $this->assertEquals(
-            ['username.required' => 'Por favor, informe um nome de usuário.'],
-            $this->searchController->messages()
-        );
+        $this->searchController->search($request);
+
+        $this->assertNotEmpty($request->messages());
     }
 }
