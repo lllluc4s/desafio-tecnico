@@ -3,7 +3,7 @@
 
 <head>
     <title>Lista Repositórios</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 </head>
 
 <body class="content">
@@ -30,8 +30,8 @@
         </tbody>
     </table>
 
-    <button>
-        <a href="{{ route('home') }}">Voltar</a>
+    <button class="btn">
+        <a class="btn" href="{{ route('home') }}">Voltar</a>
     </button>
 </body>
 

@@ -3,15 +3,8 @@
 
 <head>
     <title>Busca Repositórios GitHub</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
-    <script>
-        setTimeout(function(){
-            let errorDiv = document.querySelector('.error');
-            if(errorDiv){
-                errorDiv.style.display = 'none';
-            }
-        }, 3000);
-    </script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/script.js') }}"></script>
 </head>
 
 <body class="content">
@@ -22,7 +15,7 @@
         <label for="username">Nome de usuário do GitHub:</label>
         <input type="text" name="username" id="username">
         <br>
-        <input type="submit" value="Buscar">
+        <input class="btn" type="submit" value="Buscar">
         @if($errors->any())
             <div class="error">
                 @foreach($errors->all() as $error)

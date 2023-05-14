@@ -22,7 +22,7 @@ O projeto foi desenvolvido como parte do processo seletivo para a vaga de desenv
 1. Clone o repositório para sua máquina:
 
 ```
-git clone https://github.com/lllluc4s/desafio-tecnico.git
+git clone https://github.com/lllluc4s/busca-repo.git
 ```
 
 2. Instale as dependências do projeto executando o comando abaixo na pasta raiz:

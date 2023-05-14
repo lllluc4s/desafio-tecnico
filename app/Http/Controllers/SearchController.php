@@ -48,7 +48,7 @@ class SearchController extends Controller
 
         // Se a requisição não retornar 200, retorna para a página inicial com uma mensagem de erro
         if (200 !== $response->status()) {
-            return redirect()->back()->withErrors(['Erro ao buscar os repositórios do usuário. Tente novamente mais tarde.']);
+            return redirect()->back()->withErrors(['Erro ao encontrar o usuário. Por favor, tente novamente.']);
         }
 
         // Pega os dados da resposta
