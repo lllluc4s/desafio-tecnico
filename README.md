@@ -31,20 +31,26 @@ git clone https://github.com/lllluc4s/busca-repo.git
 composer install
 ```
 
-3. Crie um arquivo `.env` na raiz do projeto e defina as credenciais da API do GitHub:
+3. Copie o arquivo `.env.example` na raiz do projeto e crie um arquivo `.env` com as configurações do seu ambiente:
 
 ```
-GITHUB_CLIENT_ID=seu_client_id_aqui
-GITHUB_CLIENT_SECRET=seu_client_secret_aqui
+cp .env.example .env
 ```
 
-4. Inicie o servidor PHP:
+4. Verifique as credenciais de acesso à API do GitHub no arquivo `.env`:
+
+```
+GITHUB_CLIENT_ID=2651cd33df66a2ccb131
+GITHUB_CLIENT_SECRET=c1c85d46a737ee727fb2133d93596f70216c5f09
+```
+
+5. Inicie o servidor PHP:
 
 ```
 php artisan serve
 ```
 
-5. Acesse o endereço `http://localhost:8000` no navegador para usar a aplicação.
+6. Acesse o endereço `http://localhost:8000` no navegador para usar a aplicação.
 
 ## Uso
 
