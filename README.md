@@ -9,7 +9,6 @@
 ## Sobre
 
 Este é um buscador que consome a API do GitHub para listar os 5 repositórios com mais estrelas de um usuário.
-O projeto foi desenvolvido como parte do processo seletivo para a vaga de desenvolvedor PHP na [Zukkin Brasil](https://www.zukkin.com/).
 
 ## Tecnologias
 
